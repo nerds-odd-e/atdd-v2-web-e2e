@@ -12,7 +12,9 @@ import com.odde.atddv2.page.WelcomePage;
 import com.odde.atddv2.repo.OrderRepo;
 import com.odde.atddv2.repo.UserRepo;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.zh_cn.假如;
 import io.cucumber.java.zh_cn.当;
 import io.cucumber.java.zh_cn.那么;
@@ -43,6 +45,9 @@ public class ApplicationSteps {
     private OrderRepo orderRepo;
     @Autowired
     private OrderPage orderPage;
+
+    @Autowired
+    private SeleniumVideoApi seleniumVideoApi;
 
     @假如("存在用户名为{string}和密码为{string}的用户")
     public void 存在用户名为和密码为的用户(String userName, String password) {
@@ -94,6 +99,16 @@ public class ApplicationSteps {
         存在用户名为和密码为的用户("j", "j");
         以用户名为和密码为登录时("j", "j");
         登录成功("j");
+    }
+
+    @Before(value = "@ui-login", order = 1)
+    public void startRecording(Scenario scenario) {
+        seleniumVideoApi.startRecording(scenario.getName());
+    }
+
+    @After(value = "@ui-login")
+    public void endRecording() {
+        seleniumVideoApi.endRecording();
     }
 
     @当("用如下数据录入订单:")

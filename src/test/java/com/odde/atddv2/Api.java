@@ -61,6 +61,6 @@ public class Api {
 
     @SneakyThrows
     private URI makeUri(String path) {
-        return URI.create(String.format("http://127.0.0.1:%s%s", 10081, path));
+        return URI.create(String.format("http://localhost:%s%s", 10081, path));
     }
 }

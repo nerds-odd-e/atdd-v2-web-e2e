@@ -31,6 +31,6 @@ test:
     - cd env && ./dc_pc up -d && cd ..
     - ./gradlew bootRun -x npmSetup -x npmInstall -x nodeSetup -x :frontend:clean -x :frontend:npmBuild &
     - cd ..
-    - sleep 600
+    - sleep 900
     - ./gradlew cucumber
 

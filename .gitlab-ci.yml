@@ -33,4 +33,5 @@ test:
     - cd ..
     - sleep 900
     - ./gradlew cucumber
+    - ls -l attd-v2/env/videos
 

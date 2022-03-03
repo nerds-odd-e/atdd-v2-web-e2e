@@ -14,9 +14,11 @@ test:
     - docker:20.10.7-dind
   artifacts:
     paths:
-      - attd-v2/env/videos/*.mp4
+      - videos/**/*
     exclude:
       - attd-v2/**/*
+      - .gradle/**/*
+      - build/**/*
     untracked: true
     when: always
   script:
@@ -36,6 +38,8 @@ test:
     - cd ..
     - sleep 900
     - ./gradlew cucumber
-    - sleep 10
+    - sleep 30
     - ls -l attd-v2/env/videos
+    - mv attd-v2/env/videos .
+    - ls -l ./videos
 

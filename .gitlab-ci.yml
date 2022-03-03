@@ -15,6 +15,9 @@ test:
   artifacts:
     paths:
       - attd-v2/env/videos/*.mp4
+    exclude:
+      - attd-v2/**/*
+    untracked: true
     when: always
   script:
     - apk add --no-cache build-base nss libffi-dev openssl-dev npm
@@ -33,5 +36,6 @@ test:
     - cd ..
     - sleep 900
     - ./gradlew cucumber
+    - sleep 10
     - ls -l attd-v2/env/videos
 

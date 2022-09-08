@@ -9,11 +9,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class EntityFactory extends JFactory {
-    private static Set<Class<? extends Spec<?>>> beanSpecsClasses = new HashSet<>();
+    private static Set<Class> beanSpecsClasses = new HashSet<>();
 
     static {
         Reflections reflections = new Reflections("com.odde.atddv2");
-        reflections.getSubTypesOf(Spec.class).forEach(c -> beanSpecsClasses.add((Class<? extends Spec<?>>) c));
+        beanSpecsClasses.addAll(reflections.getSubTypesOf(Spec.class));
     }
 
     public EntityFactory() {

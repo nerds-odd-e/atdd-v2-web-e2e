@@ -1,6 +1,5 @@
 package com.odde.atddv2;
 
-import com.github.leeonky.jsonassert.PatternComparator;
 import com.odde.atddv2.entity.User;
 import com.odde.atddv2.repo.UserRepo;
 import io.cucumber.java.Before;
@@ -12,8 +11,9 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 
+import static com.github.leeonky.dal.Assertions.expect;
+
 public class Api {
-    public final static PatternComparator COMPARATOR = PatternComparator.defaultPatternComparator();
     private static String token;
     private String response;
     @Autowired
@@ -43,7 +43,7 @@ public class Api {
     public void responseShouldMatchJson(String json) {
         try {
             String responseBodyNoNewLine = json.replace('\n', ' ');
-            JSONAssert.assertEquals("[" + responseBodyNoNewLine + "]", "[" + response + "]", COMPARATOR);
+            JSONAssert.assertEquals("[" + responseBodyNoNewLine + "]", "[" + response + "]", false);
         } catch (Throwable t) {
             System.err.println("Expect:");
             System.err.println(json);
@@ -51,6 +51,10 @@ public class Api {
             System.err.println(response);
             throw t;
         }
+    }
+
+    public void responseShouldMatchJsonDAL(String json) {
+        expect(response).should(json);
     }
 
     public void post(String path, Object body) {

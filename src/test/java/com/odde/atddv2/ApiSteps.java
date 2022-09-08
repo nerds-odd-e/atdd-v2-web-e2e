@@ -96,4 +96,9 @@ public class ApiSteps {
     public void 订单任务运行时() {
         mockServer.getJson("/task", UnaryOperator.identity(), Times.exactly(1), "true");
     }
+
+    @那么("返回如下订单2")
+    public void 返回如下订单2(String json) {
+        api.responseShouldMatchJsonDAL(json);
+    }
 }

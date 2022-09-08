@@ -13,9 +13,9 @@
     }
     """
     当API查询订单时
-    那么返回如下订单
+    那么返回如下订单2
     """
-      [{
+    json: [{
         "code": "SN001",
         "productName": "电脑",
         "total": 19999,
@@ -55,10 +55,9 @@
     }
     """
     当API查询订单"SN001"详情时
-    那么返回如下订单
+    那么返回如下订单2
     """
-      "**
-      :{
+    json: {
         logistics: {
           deliverNo: '4313751158896'
           companyCode: 'yunda'
@@ -81,7 +80,7 @@
           deliveryStatus: '在途中'
           isSigned: '未签收'
         }
-      }"
+      }
     """
 
   场景: 订单发货
@@ -92,7 +91,7 @@
     当通过API发货订单"SN001"，快递单号为"SF001"
     那么"订单.code[SN001]"应为:
     """
-      :{
+    : {
         deliveredAt: '2000-05-10T20:00:00Z'
         deliverNo: 'SF001'
         status: 'delivering'

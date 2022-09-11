@@ -58,7 +58,6 @@ dependencies {
     testImplementation "com.github.leeonky:jfactory:${jfactory}"
     testImplementation "com.github.leeonky:jfactory-cucumber:${jfactoryCucumber}"
     testImplementation "com.github.leeonky:jfactory-repo-jpa:${jfactoryRepoJpa}"
-    testImplementation "org.reflections:reflections:0.9.12"
     testImplementation 'com.github.leeonky:DAL-java:0.3.5'
     testImplementation 'com.github.leeonky:DAL-extension-basic:0.0.5'
     testImplementation 'com.github.leeonky:RESTful-cucumber:0.0.10'

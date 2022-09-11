@@ -26,6 +26,37 @@
     }
     """
 
+  场景: 订单详情 - 订单项
+    假如存在"订单":
+    """
+    {
+      "code": "SN001",
+      "productName": "电脑",
+      "total": "19999",
+      "status": "toBeDelivered",
+      "deliverNo": null,
+      "lines": [{
+        "itemName": "电脑",
+        "price": "19999",
+        "quantity": 1
+      }]
+    }
+    """
+    那么"订单.code[SN001]"应为:
+    """
+    : {
+        code= SN001
+        productName= 电脑
+        total: 19999
+        status: toBeDelivered
+        lines: [{
+          itemName= 电脑
+          price: 19999
+          quantity= 1
+        }]
+    }
+    """
+
   场景: 订单详情 - 查询物流
     假如存在"已发货的 订单":
       | code  | deliverNo     |

@@ -60,6 +60,7 @@ dependencies {
     testImplementation "org.reflections:reflections:0.9.12"
     testImplementation 'com.github.leeonky:DAL-java:0.3.5'
     testImplementation 'com.github.leeonky:DAL-extension-basic:0.0.5'
+    testImplementation 'com.github.leeonky:RESTful-cucumber:0.0.10'
 }
 
 task cucumber(type: JavaExec) {
@@ -70,6 +71,7 @@ task cucumber(type: JavaExec) {
     args = ['--plugin', 'pretty',
             '--glue', 'com.odde.atddv2',
             '--glue', 'com.github.leeonky.jfactory.cucumber',
+            '--glue', 'com.github.leeonky.cucumber.restful',
             'src/test/resources']
 }
 

@@ -2,6 +2,7 @@ package com.odde.atddv2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.github.leeonky.cucumber.restful.RestfulStep;
 import com.github.leeonky.jfactory.JFactory;
 import com.github.leeonky.jfactory.cucumber.JData;
 import com.odde.atddv2.entity.Order;
@@ -22,6 +23,8 @@ import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootContextLoader;
 import org.springframework.test.context.ContextConfiguration;
+
+import javax.annotation.PostConstruct;
 
 import static org.awaitility.Awaitility.await;
 
@@ -122,5 +125,13 @@ public class ApplicationSteps {
         await().ignoreExceptions().untilAsserted(() -> {
             jData.should(queryExpression, dalExpression);
         });
+    }
+
+    @Autowired
+    private RestfulStep restfulStep;
+
+    @PostConstruct
+    public void setBaseUrl() {
+        restfulStep.setBaseUrl("http://127.0.0.1:10081/api/");
     }
 }

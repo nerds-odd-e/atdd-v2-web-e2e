@@ -1,5 +1,6 @@
 package com.odde.atddv2;
 
+import com.github.leeonky.cucumber.restful.RestfulStep;
 import com.odde.atddv2.entity.User;
 import com.odde.atddv2.repo.UserRepo;
 import io.cucumber.java.Before;
@@ -11,8 +12,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 
-import static com.github.leeonky.dal.Assertions.expect;
-
 public class Api {
     private static String token;
     private String response;
@@ -20,6 +19,9 @@ public class Api {
     private UserRepo userRepo;
     @Autowired
     private RestTemplate restTemplate;
+
+    @Autowired
+    private RestfulStep restfulStep;
 
     public static String getToken() {
         return token;
@@ -31,6 +33,7 @@ public class Api {
         userRepo.save(defaultUser);
         token = restTemplate.postForEntity(makeUri("/users/login"), defaultUser, User.class)
                 .getHeaders().get("token").get(0);
+        restfulStep.header("token", token);
     }
 
     public void get(String path) {
@@ -51,10 +54,6 @@ public class Api {
             System.err.println(response);
             throw t;
         }
-    }
-
-    public void responseShouldMatchJsonDAL(String json) {
-        expect(response).should(json);
     }
 
     public void post(String path, Object body) {

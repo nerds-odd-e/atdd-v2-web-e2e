@@ -1,8 +1,11 @@
 package com.odde.atddv2.jfactory.api;
 
+import com.yaoruozhou.jfactory.Request;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Request(path = "/express/query")
 public class LogisticsResponse {
     public int status;
     public String msg;

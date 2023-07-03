@@ -20,7 +20,7 @@
       body.json= [{
         code= SN001
         productName= 电脑
-        total= 19999.0
+        total: 19999.0
         status= toBeDelivered
       }]
     }

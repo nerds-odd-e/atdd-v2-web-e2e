@@ -35,4 +35,4 @@ standalone-dev-endpoint:
 
 selenium-video-api:
   endpoint:
-    url: http://mock-server.tool.net:1080
+    url: http://web-driver-video.tool.net:9000

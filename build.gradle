@@ -29,9 +29,7 @@ configurations {
 
 ext {
     set('springCloudVersion', "2020.0.2")
-    set('jfactory', '0.3.20')
-    set('jfactoryCucumber', '0.1.24')
-    set('jfactoryRepoJpa', '0.1.10')
+    set('testCharm', '0.8.1-alpha.14')
 }
 
 dependencyManagement {
@@ -41,9 +39,9 @@ dependencyManagement {
 }
 
 dependencies {
-    testAnnotationProcessor('org.projectlombok:lombok:1.18.18')
+    testAnnotationProcessor('org.projectlombok:lombok:1.18.32')
     testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
-    testImplementation('org.projectlombok:lombok:1.18.18')
+    testImplementation('org.projectlombok:lombok:1.18.32')
     testImplementation("org.springframework.boot:spring-boot-starter-data-jpa")
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'com.vaadin.external.google', module: 'android-json'
@@ -58,13 +56,12 @@ dependencies {
         exclude group: 'com.vaadin.external.google', module: 'android-json'
     }
     testImplementation group: 'org.mock-server', name: 'mockserver-client-java', version: '5.13.2'
-    testImplementation "com.github.leeonky:jfactory:${jfactory}"
-    testImplementation "com.github.leeonky:jfactory-cucumber:${jfactoryCucumber}"
-    testImplementation "com.github.leeonky:jfactory-repo-jpa:${jfactoryRepoJpa}"
-    testImplementation 'com.github.leeonky:DAL-java:0.3.19'
-    testImplementation 'com.github.leeonky:DAL-extension-basic:0.0.12'
-    testImplementation 'com.github.leeonky:RESTful-cucumber:0.0.17'
-    testImplementation "com.github.leeonky:bean-util:0.6.3"
+    testImplementation "com.github.leeonky:jfactory:${testCharm}"
+    testImplementation "com.github.leeonky:jfactory-cucumber:${testCharm}"
+    testImplementation "com.github.leeonky:jfactory-repo-jpa:${testCharm}"
+    testImplementation "com.github.leeonky:DAL-java:${testCharm}"
+    testImplementation "com.github.leeonky:DAL-extension-basic:${testCharm}"
+    testImplementation "com.github.leeonky:RESTful-cucumber:${testCharm}"
     testImplementation 'org.reflections:reflections:0.9.11'
     testImplementation('org.json:json:20220924')
     testImplementation 'com.yaoruozhou:jfactory-repo-mock-server:0.3.0'
@@ -74,7 +71,7 @@ task cucumber(type: JavaExec) {
     dependsOn assemble, testClasses
     main = "io.cucumber.core.cli.Main"
     classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-    environment "SPRING_PROFILES_ACTIVE", "test"
+    environment SPRING_PROFILES_ACTIVE: environment.SPRING_PROFILES_ACTIVE ?: "test"
     args = ['--plugin', 'pretty',
             '--glue', 'com.odde.atddv2',
             '--glue', 'com.github.leeonky.jfactory.cucumber',

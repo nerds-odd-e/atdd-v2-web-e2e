@@ -14,6 +14,8 @@ public class EntityFactory extends JFactory {
     static {
         Reflections reflections = new Reflections("com.odde.atddv2.jfactory.factory");
         beanSpecsClasses.addAll(reflections.getSubTypesOf(Spec.class));
+        reflections = new Reflections("com.odde.atddv2.jfactory.mongo");
+        beanSpecsClasses.addAll(reflections.getSubTypesOf(Spec.class));
     }
 
     public EntityFactory() {

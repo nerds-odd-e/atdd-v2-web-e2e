@@ -65,6 +65,7 @@ dependencies {
     testImplementation 'org.reflections:reflections:0.9.11'
     testImplementation('org.json:json:20220924')
     testImplementation 'com.yaoruozhou:jfactory-repo-mock-server:0.3.0'
+    testImplementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.4.4")
 }
 
 task cucumber(type: JavaExec) {

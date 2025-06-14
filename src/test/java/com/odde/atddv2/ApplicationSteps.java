@@ -24,8 +24,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootContextLoader;
 import org.springframework.test.context.ContextConfiguration;
 
-import javax.annotation.PostConstruct;
-
 import static org.awaitility.Awaitility.await;
 
 @ContextConfiguration(classes = {CucumberConfiguration.class}, loader = SpringBootContextLoader.class)
@@ -130,7 +128,7 @@ public class ApplicationSteps {
     @Autowired
     private RestfulStep restfulStep;
 
-    @PostConstruct
+    @Before(order = 1)
     public void setBaseUrl() {
         restfulStep.setBaseUrl("http://127.0.0.1:10081/api/");
     }

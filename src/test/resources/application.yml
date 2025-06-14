@@ -16,6 +16,9 @@ spring:
       hibernate:
         default_catalog: db
         dialect: org.hibernate.dialect.MySQL5Dialect
+  data:
+    mongodb:
+      uri: mongodb://mongodb.tool.net:27017/local
 
 logging.level.org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
 

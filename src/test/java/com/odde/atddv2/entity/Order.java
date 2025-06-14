@@ -1,9 +1,8 @@
 package com.odde.atddv2.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.odde.atddv2.entity.mongo.Express;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -23,13 +22,24 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private long id;
 
     private String code, productName, recipientName, recipientMobile, recipientAddress;
 
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Access(AccessType.PROPERTY)
     private String deliverNo;
+
+    public String getDeliverNo() {
+        return express == null ? deliverNo : express.getNumber();
+    }
+
+    public void setDeliverNo(String deliverNo) {
+        express = null;
+        this.deliverNo = deliverNo;
+    }
+
+    @Transient
+    private Express express;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status;

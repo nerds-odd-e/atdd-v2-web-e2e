@@ -44,7 +44,7 @@ link https://akr.am/blog/posts/using-utf-8-in-the-windows-terminal
 * Open the feature file at `backend/src/test/resources/init.feature` and run it by clicking the green run test gutter
   icon on the left bar and test should pass
 
-# Run the application
+# Run the application without logistics service (mock logistics in test)
 
 # For Linux and Mac
 
@@ -58,3 +58,15 @@ link https://akr.am/blog/posts/using-utf-8-in-the-windows-terminal
 gradlew.bat bootRun
 ```
 
+# Run the application with logistics service
+
+## main web
+```shell
+SPRING_PROFILES_ACTIVE=logistics-api ./gradlew bootRun
+```
+
+## logistics
+```shell
+cd logistics
+./gradlew bootRun
+```

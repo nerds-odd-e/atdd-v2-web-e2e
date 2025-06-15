@@ -18,13 +18,11 @@ public class OrderFactories {
         @Override
         public void main() {
             property("lines").reverseAssociation("order");
-            property("deliverNo").ignore();
         }
 
         @Trait
         public void 已发货的() {
             property("status").value(delivering);
-            property("express").is(Expresses.快递信息.class);
         }
 
         @Trait
@@ -46,4 +44,18 @@ public class OrderFactories {
         }
     }
 
+    public static class 订单_物流api extends 订单 {
+
+        @Override
+        public void main() {
+            property("deliverNo").ignore();
+        }
+
+        @Trait
+        @Override
+        public void 已发货的() {
+            property("express").is(Expresses.快递信息.class);
+            super.已发货的();
+        }
+    }
 }

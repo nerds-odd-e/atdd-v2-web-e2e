@@ -61,6 +61,7 @@ dependencies {
     testImplementation "com.github.leeonky:jfactory-repo-jpa:${testCharm}"
     testImplementation "com.github.leeonky:DAL-java:${testCharm}"
     testImplementation "com.github.leeonky:DAL-extension-basic:${testCharm}"
+    testImplementation "com.github.leeonky:DAL-extension-jdbc:${testCharm}"
     testImplementation "com.github.leeonky:RESTful-cucumber:${testCharm}"
     testImplementation 'org.reflections:reflections:0.9.11'
     testImplementation('org.json:json:20220924')

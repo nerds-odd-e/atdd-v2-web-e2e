@@ -1,6 +1,6 @@
 # language: zh-CN
 @api-login
-功能: 订单
+功能: 订单-jfactory
 
   场景: 订单列表
     假如存在"订单":
